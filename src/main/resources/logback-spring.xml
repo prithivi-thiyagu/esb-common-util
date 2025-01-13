@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+    <!-- Set the logging level for your application -->
+    <property name="LOG_LEVEL" value="INFO" />
+
+    <!-- Console appender for logging to the console -->
+    <appender name="console" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>%d{yyyy-MM-dd HH:mm:ss} - %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <!--<appender name="rollingFile" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>logs/spring-boot-app.log</file>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>logs/spring-boot-app-%d{yyyy-MM-dd}.%i.log</fileNamePattern>
+            <maxHistory>7</maxHistory> &lt;!&ndash; Keep logs for the last 30 days &ndash;&gt;
+            <totalSizeCap>2GB</totalSizeCap> &lt;!&ndash; Limit total size of all log files &ndash;&gt;
+        </rollingPolicy>
+        <encoder>
+            <pattern>%d{yyyy-MM-dd HH:mm:ss} - %msg%n</pattern>
+        </encoder>
+    </appender>-->
+
+<!--    <root level="INFO">-->
+<!--        <appender-ref ref="rollingFile" />-->
+<!--    </root>-->
+
+    <!-- File appender for logging to a file -->
+    <appender name="file" class="ch.qos.logback.core.FileAppender">
+        <file>logs/spring-boot-app.log</file>
+        <encoder>
+            <pattern>%d{yyyy-MM-dd HH:mm:ss} - %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <!-- Root logger configuration to log both to console and file -->
+    <root level="${LOG_LEVEL}">
+        <appender-ref ref="console" />
+        <appender-ref ref="file" />
+<!--        <appender-ref ref="rollingFile" />-->
+    </root>
+
+    <!-- Optionally, configure loggers for specific packages or classes -->
+    <logger name="com.bandhanbank.esb.common.util" level="INFO" />
+
+</configuration>
